@@ -11,11 +11,14 @@
 
     public interface ISalaryCalculator
     {
+
+
         decimal Calculate(decimal baseSalary);
     }
 
     public class LowSalaryCalculator : ISalaryCalculator
     {
+       
         public decimal Calculate(decimal baseSalary)
         {
             return baseSalary + 1000;
@@ -47,6 +50,29 @@
     }
 
 
+
+    public class HighSalaryCalculatorWithDelegate
+    {
+
+        public decimal  Calculate(decimal salary)
+        {
+            return salary + 3000;
+        }
+
+
+    }
+
+    public class ManagerSalaryCalculatorWithDelegate
+    {
+
+        public decimal Calculate(decimal salary)
+        {
+            return salary + 4000;
+        }
+
+
+    }
+
     public class SalaryCalculator
     {
 
@@ -54,6 +80,14 @@
         {
 
           return  salaryCalculator.Calculate(baseSalary);
+        }
+
+
+        public decimal GoodCalculateByDelegate(decimal baseSalary,Func<decimal,decimal> calculatorDelegate)
+        {
+
+            return calculatorDelegate.Invoke(baseSalary);
+
         }
 
         public decimal BadCalculate(decimal baseSalary,SalaryType salaryType)
