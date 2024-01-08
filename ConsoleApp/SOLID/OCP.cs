@@ -1,122 +1,96 @@
-﻿namespace ConsoleApp.SOLID.OCP
+﻿namespace ConsoleApp.SOLID.OCP;
+
+public enum SalaryType
 {
+    Low,
+    Medium,
+    High,
+    Manager
+}
 
-    public enum SalaryType
+public interface ISalaryCalculator
+{
+    decimal Calculate(decimal baseSalary);
+}
+
+public class LowSalaryCalculator : ISalaryCalculator
+{
+    public decimal Calculate(decimal baseSalary)
     {
-        Low,
-        Medium,
-        High,
-        Manager
+        return baseSalary + 1000;
     }
+}
 
-    public interface ISalaryCalculator
+public class MiddleSalaryCalculator : ISalaryCalculator
+{
+    public decimal Calculate(decimal baseSalary)
     {
-
-
-        decimal Calculate(decimal baseSalary);
+        return baseSalary + 2000;
     }
+}
 
-    public class LowSalaryCalculator : ISalaryCalculator
+public class HighSalaryCalculator : ISalaryCalculator
+{
+    public decimal Calculate(decimal baseSalary)
     {
-       
-        public decimal Calculate(decimal baseSalary)
-        {
-            return baseSalary + 1000;
-        }
+        return baseSalary + 3000;
     }
+}
 
-    public class MiddleSalaryCalculator : ISalaryCalculator
+public class ManagerSalaryCalculator : ISalaryCalculator
+{
+    public decimal Calculate(decimal baseSalary)
     {
-        public decimal Calculate(decimal baseSalary)
-        {
-            return baseSalary + 2000;
-        }
+        return baseSalary + 4000;
     }
+}
 
-    public class HighSalaryCalculator : ISalaryCalculator
+public class HighSalaryCalculatorWithDelegate
+{
+    public decimal Calculate(decimal salary)
     {
-        public decimal Calculate(decimal baseSalary)
-        {
-            return baseSalary + 3000;
-        }
+        return salary + 3000;
     }
+}
 
-    public class ManagerSalaryCalculator : ISalaryCalculator
+public class ManagerSalaryCalculatorWithDelegate
+{
+    public decimal Calculate(decimal salary)
     {
-        public decimal Calculate(decimal baseSalary)
-        {
-            return baseSalary + 4000;
-        }
+        return salary + 4000;
     }
+}
 
-
-
-    public class HighSalaryCalculatorWithDelegate
+public class SalaryCalculator
+{
+    public decimal GoodCalculate(decimal baseSalary, ISalaryCalculator salaryCalculator)
     {
-
-        public decimal  Calculate(decimal salary)
-        {
-            return salary + 3000;
-        }
-
-
-    }
-
-    public class ManagerSalaryCalculatorWithDelegate
-    {
-
-        public decimal Calculate(decimal salary)
-        {
-            return salary + 4000;
-        }
-
-
-    }
-
-    public class SalaryCalculator
-    {
-
-        public decimal GoodCalculate(decimal baseSalary, ISalaryCalculator salaryCalculator)
-        {
-
-          return  salaryCalculator.Calculate(baseSalary);
-        }
-
-
-        public decimal GoodCalculateByDelegate(decimal baseSalary,Func<decimal,decimal> calculatorDelegate)
-        {
-
-            return calculatorDelegate.Invoke(baseSalary);
-
-        }
-
-        public decimal BadCalculate(decimal baseSalary,SalaryType salaryType)
-        {
-            decimal newSalary = 0;
-
-            switch (salaryType)
-            {
-                case SalaryType.Low:
-                    newSalary = baseSalary + 1000;
-                    break;
-                case SalaryType.Medium:
-                    newSalary = baseSalary + 2000;
-                    break;
-                case SalaryType.High:
-                    newSalary = baseSalary + 3000;
-                    break;
-
-            }
-
-            return newSalary;
-
-
-
-        }
-
-
-
+        return salaryCalculator.Calculate(baseSalary);
     }
 
 
+    public decimal GoodCalculateByDelegate(decimal baseSalary, Func<decimal, decimal> calculatorDelegate)
+    {
+        return calculatorDelegate.Invoke(baseSalary);
+    }
+
+    public decimal BadCalculate(decimal baseSalary, SalaryType salaryType)
+    {
+        decimal newSalary = 0;
+
+        switch (salaryType)
+        {
+            case SalaryType.Low:
+                newSalary = baseSalary + 1000;
+                break;
+            case SalaryType.Medium:
+                newSalary = baseSalary + 2000;
+                break;
+            case SalaryType.High:
+                newSalary = baseSalary + 3000;
+                break;
+        }
+
+        return newSalary;
+    }
 }
