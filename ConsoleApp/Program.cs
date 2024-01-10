@@ -9,6 +9,12 @@ Console.WriteLine("Hello, World!");
 
 SuperCar c = new SuperCar();
 c.Forward();
+
+if(true)
+{
+    c.ChangeLeftOrRightBehavior(new Car50LeftOrRightBehavior());
+}
+
 c.Backward();
 c.Right();
 c.Left();

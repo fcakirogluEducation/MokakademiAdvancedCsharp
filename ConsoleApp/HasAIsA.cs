@@ -17,7 +17,10 @@ namespace ConsoleApp.HasAIsA
             Console.WriteLine("Forward");
         }
 
-
+        public void ChangeLeftOrRightBehavior(IRightOrLeftBehavior leftOrRightBehavior)
+        {
+            this.RightOrLeftBehavior = leftOrRightBehavior;
+        }
 
     }
 
