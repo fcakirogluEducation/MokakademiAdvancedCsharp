@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp.HasAIsA
+﻿namespace ConsoleApp
 {
 
     public abstract class Vehicle
@@ -19,7 +13,7 @@ namespace ConsoleApp.HasAIsA
 
         public void ChangeLeftOrRightBehavior(IRightOrLeftBehavior leftOrRightBehavior)
         {
-            this.RightOrLeftBehavior = leftOrRightBehavior;
+            RightOrLeftBehavior = leftOrRightBehavior;
         }
 
     }
@@ -27,13 +21,13 @@ namespace ConsoleApp.HasAIsA
 
     public interface IBackwardBehavior
     {
-        public  void Backward();
+        public void Backward();
     }
 
     public interface IRightOrLeftBehavior
     {
-        public  void Left();
-        public  void Right();
+        public void Left();
+        public void Right();
     }
 
 
@@ -129,7 +123,7 @@ namespace ConsoleApp.HasAIsA
     }
 
 
-    public class SuperCar : Vehicle,IBackwardBehavior,IRightOrLeftBehavior
+    public class SuperCar : Vehicle, IBackwardBehavior, IRightOrLeftBehavior
     {
 
         public SuperCar()
@@ -155,7 +149,7 @@ namespace ConsoleApp.HasAIsA
 
     }
 
-    public class Car50 : Vehicle,IBackwardBehavior,IRightOrLeftBehavior
+    public class Car50 : Vehicle, IBackwardBehavior, IRightOrLeftBehavior
     {
 
         public Car50()
@@ -182,12 +176,12 @@ namespace ConsoleApp.HasAIsA
 
     public class Train : Vehicle
     {
-      
+
     }
 
     public class SuperTrain : Vehicle
     {
-      
+
     }
 
 }

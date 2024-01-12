@@ -2,7 +2,6 @@
 
 using ConsoleApp;
 using ConsoleApp.Events;
-using ConsoleApp.HasAIsA;
 
 
 Console.WriteLine("Hello, World!");
