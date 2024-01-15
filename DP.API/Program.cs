@@ -1,5 +1,7 @@
 using DP.API.ADP;
 using DP.API.DDP;
+using DP.API.Design_Patterns.STP;
+using DP.API.Extensions;
 using Microsoft.Extensions.Caching.Memory;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
@@ -52,16 +54,7 @@ builder.Services.AddScoped<IProductService>(sp =>
 });
 
 
-
-
-
-
-
-
-
-
-
-
+builder.Services.AddRepositoryStrategy();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AdvancedImageProcess>();
