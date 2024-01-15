@@ -1,5 +1,6 @@
 using DP.API.ADP;
 using DP.API.DDP;
+using DP.API.Design_Patterns.ODP;
 using DP.API.Design_Patterns.STP;
 using DP.API.Extensions;
 using Microsoft.Extensions.Caching.Memory;
@@ -57,6 +58,7 @@ builder.Services.AddScoped<IProductService>(sp =>
 builder.Services.AddRepositoryStrategy();
 
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<AdvancedImageProcess>();
 builder.Services.AddScoped<IImageProcess>(sp =>
 {
@@ -76,6 +78,25 @@ builder.Services.AddScoped<IImageProcess>(sp =>
     }
 
     return process;
+
+});
+
+
+builder.Services.AddScoped<SmsService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<UserObserverSubject>(sp =>
+{
+     
+
+   UserObserverSubject subject = new UserObserverSubject();
+
+
+  
+   
+        subject.AddObserver(sp.GetRequiredService<SmsService>());
+        subject.AddObserver(sp.GetRequiredService<NotificationService>());
+    
+    return subject;
 
 });
 
